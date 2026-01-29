@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>个人介绍 | 文富</title>
+    <meta
+      name="description"
+      content="个人介绍单页：简介、技能、项目、经历与联系方式。"
+    />
+    <style>
+      :root {
+        --bg: #0b1020;
+        --card: rgba(255, 255, 255, 0.08);
+        --card2: rgba(255, 255, 255, 0.06);
+        --stroke: rgba(255, 255, 255, 0.12);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.68);
+        --muted2: rgba(255, 255, 255, 0.55);
+        --brand: #7c3aed;
+        --brand2: #22c55e;
+        --danger: #ef4444;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+        --radius: 18px;
+        --radius2: 14px;
+        --max: 1040px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f6f7fb;
+          --card: rgba(255, 255, 255, 0.85);
+          --card2: rgba(255, 255, 255, 0.7);
+          --stroke: rgba(15, 23, 42, 0.12);
+          --text: rgba(15, 23, 42, 0.92);
+          --muted: rgba(15, 23, 42, 0.68);
+          --muted2: rgba(15, 23, 42, 0.55);
+          --shadow: 0 18px 50px rgba(15, 23, 42, 0.14);
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        color: var(--text);
+        background: radial-gradient(
+            1200px 700px at 15% 10%,
+            rgba(124, 58, 237, 0.25),
+            transparent 60%
+          ),
+          radial-gradient(
+            900px 600px at 85% 20%,
+            rgba(34, 197, 94, 0.18),
+            transparent 62%
+          ),
+          radial-gradient(
+            1000px 800px at 70% 90%,
+            rgba(59, 130, 246, 0.16),
+            transparent 60%
+          ),
+          var(--bg);
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 28px 18px 48px;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        margin: -28px -18px 18px;
+        padding: 14px 18px;
+        backdrop-filter: blur(12px);
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.25),
+          rgba(0, 0, 0, 0)
+        );
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      @media (prefers-color-scheme: light) {
+        .topbar {
+          background: linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.8),
+            rgba(255, 255, 255, 0)
+          );
+          border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        }
+      }
+
+      .topbar-inner {
+        max-width: var(--max);
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        justify-content: space-between;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--brand), #60a5fa);
+        box-shadow: 0 0 0 6px rgba(124, 58, 237, 0.18);
+      }
+
+      .nav {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--muted);
+        font-size: 13px;
+        transition: transform 0.12s ease, background 0.12s ease;
+        cursor: pointer;
+      }
+      .chip:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.08);
+        text-decoration: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.3fr 0.7fr;
+        gap: 18px;
+        align-items: stretch;
+        margin-top: 8px;
+      }
+      @media (max-width: 920px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        border: 1px solid var(--stroke);
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.07),
+          rgba(255, 255, 255, 0.03)
+        );
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      @media (prefers-color-scheme: light) {
+        .card {
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.95),
+            rgba(255, 255, 255, 0.75)
+          );
+        }
+      }
+
+      .card-pad {
+        padding: 22px 22px;
+      }
+
+      .kicker {
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        font-family: var(--mono);
+        color: var(--muted);
+        font-size: 12px;
+        letter-spacing: 0.4px;
+      }
+      .kicker b {
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 12px 0 10px;
+        font-size: 36px;
+        line-height: 1.12;
+        letter-spacing: -0.4px;
+      }
+      @media (max-width: 520px) {
+        h1 {
+          font-size: 30px;
+        }
+      }
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 15px;
+        max-width: 64ch;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--text);
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: transform 0.12s ease, background 0.12s ease,
+          border-color 0.12s ease;
+        user-select: none;
+      }
+      .btn:hover {
+        transform: translateY(-1px);
+        background: rgba(255, 255, 255, 0.1);
+        text-decoration: none;
+      }
+      .btn.primary {
+        border-color: rgba(124, 58, 237, 0.45);
+        background: linear-gradient(
+          135deg,
+          rgba(124, 58, 237, 0.22),
+          rgba(59, 130, 246, 0.16)
+        );
+      }
+      .btn.good {
+        border-color: rgba(34, 197, 94, 0.45);
+        background: linear-gradient(
+          135deg,
+          rgba(34, 197, 94, 0.18),
+          rgba(16, 185, 129, 0.12)
+        );
+      }
+
+      .aside {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .avatar {
+        width: 86px;
+        height: 86px;
+        border-radius: 22px;
+        border: 1px solid var(--stroke);
+        background: radial-gradient(
+            60px 60px at 30% 30%,
+            rgba(255, 255, 255, 0.42),
+            transparent 60%
+          ),
+          linear-gradient(135deg, rgba(124, 58, 237, 0.55), rgba(34, 197, 94, 0.4));
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+      }
+      @media (prefers-color-scheme: light) {
+        .avatar {
+          box-shadow: 0 16px 34px rgba(15, 23, 42, 0.18);
+        }
+      }
+
+      .mini {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .mini .pill {
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: var(--card2);
+        border: 1px solid var(--stroke);
+      }
+      .pill .label {
+        font-size: 12px;
+        color: var(--muted2);
+      }
+      .pill .value {
+        margin-top: 6px;
+        font-weight: 700;
+      }
+
+      .section {
+        margin-top: 18px;
+      }
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 18px 2px 10px;
+      }
+      .section-header h2 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: -0.2px;
+      }
+      .section-header p {
+        margin: 0;
+        color: var(--muted2);
+        font-size: 13px;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+      }
+      .col-6 {
+        grid-column: span 6;
+      }
+      .col-4 {
+        grid-column: span 4;
+      }
+      .col-8 {
+        grid-column: span 8;
+      }
+      .col-12 {
+        grid-column: span 12;
+      }
+      @media (max-width: 920px) {
+        .col-6,
+        .col-4,
+        .col-8 {
+          grid-column: span 12;
+        }
+      }
+
+      .item {
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: var(--radius2);
+        padding: 16px 16px;
+      }
+      .item .top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+      }
+      .item h3 {
+        margin: 0;
+        font-size: 15px;
+        letter-spacing: -0.1px;
+      }
+      .meta {
+        font-size: 12px;
+        color: var(--muted2);
+        font-family: var(--mono);
+        white-space: nowrap;
+      }
+      .item p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 13px;
+      }
+      .tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 12px;
+      }
+      .tag {
+        font-size: 12px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--stroke);
+        color: var(--muted);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .footer {
+        margin-top: 22px;
+        text-align: center;
+        color: var(--muted2);
+        font-size: 12px;
+      }
+
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 18px;
+        transform: translateX(-50%);
+        padding: 10px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--stroke);
+        background: rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(12px);
+        color: var(--text);
+        font-size: 13px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.18s ease, transform 0.18s ease;
+      }
+      @media (prefers-color-scheme: light) {
+        .toast {
+          background: rgba(255, 255, 255, 0.9);
+        }
+      }
+      .toast.show {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-2px);
+      }
+
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar" role="banner">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="回到顶部">
+          <span class="dot" aria-hidden="true"></span>
+          <span>文富</span>
+        </a>
+        <nav class="nav" aria-label="页面导航">
+          <a class="chip" href="#about">关于</a>
+          <a class="chip" href="#skills">技能</a>
+          <a class="chip" href="#projects">项目</a>
+          <a class="chip" href="#experience">经历</a>
+          <a class="chip" href="#contact">联系</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top" class="wrap" role="main">
+      <section class="hero" aria-label="个人简介">
+        <article class="card">
+          <div class="card-pad">
+            <div class="kicker">
+              <b>个人介绍</b>
+              <span aria-hidden="true">·</span>
+              <span>可直接替换内容</span>
+            </div>
+            <h1>
+              你好，我是<strong>文富</strong>，
+              <br />
+              一名<strong>前端 / 全栈 / 数据 / 设计</strong>方向的学习者与实践者。
+            </h1>
+            <p class="subtitle">
+              我喜欢把复杂问题拆解成清晰的步骤，用工程化方法交付可维护的成果。
+              目前专注于：<strong>Web 开发</strong>、<strong>性能优化</strong>、<strong>自动化</strong>与<strong>用户体验</strong>。
+            </p>
+            <div class="cta-row" aria-label="快捷操作">
+              <button class="btn primary" id="btnCopyEmail" type="button">
+                复制邮箱
+              </button>
+              <a class="btn good" href="#projects">查看项目</a>
+              <button class="btn" id="btnDownload" type="button">
+                下载简历（示例）
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <aside class="aside">
+          <section class="card" aria-label="个人信息卡片">
+            <div class="card-pad">
+              <div style="display: flex; gap: 14px; align-items: center">
+                <div class="avatar" aria-hidden="true"></div>
+                <div>
+                  <div style="font-weight: 800; font-size: 16px">文富</div>
+                  <div style="color: var(--muted); margin-top: 6px; font-size: 13px">
+                    目标岗位：前端工程师 / 全栈工程师
+                  </div>
+                  <div
+                    style="
+                      color: var(--muted2);
+                      margin-top: 10px;
+                      font-family: var(--mono);
+                      font-size: 12px;
+                    "
+                    id="miniHeadline"
+                  >
+                    基于结果交付 · 主动沟通 · 持续迭代
+                  </div>
+                </div>
+              </div>
+
+              <div class="mini" aria-label="关键信息">
+                <div class="pill">
+                  <div class="label">所在地</div>
+                  <div class="value">中国 · 你的城市</div>
+                </div>
+                <div class="pill">
+                  <div class="label">状态</div>
+                  <div class="value">在学 / 在职 / 可实习</div>
+                </div>
+                <div class="pill">
+                  <div class="label">技术栈</div>
+                  <div class="value">React · Node.js</div>
+                </div>
+                <div class="pill">
+                  <div class="label">关注</div>
+                  <div class="value">工程化 · 性能</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="card" aria-label="一句话亮点">
+            <div class="card-pad">
+              <div class="kicker"><b>亮点</b></div>
+              <p class="subtitle" style="margin-top: 10px">
+                习惯用数据说话：为项目建立可观测性（日志/埋点/性能指标），让改进可度量、可复盘。
+              </p>
+            </div>
+          </section>
+        </aside>
+      </section>
+
+      <section id="about" class="section" aria-label="关于我">
+        <div class="section-header">
+          <h2>关于我</h2>
+          <p>你可以把这里改成更真实的个人故事</p>
+        </div>
+        <div class="grid">
+          <div class="item col-8">
+            <div class="top">
+              <h3>我在做什么</h3>
+              <div class="meta">2026</div>
+            </div>
+            <p>
+              目前正在学习与实践<strong>前端工程化</strong>、<strong>组件化开发</strong>与<strong>自动化脚本</strong>。
+              喜欢把日常任务流程化：把“重复”变成“按钮”，把“经验”变成“文档”。
+            </p>
+            <div class="tags" aria-label="关键词">
+              <span class="tag">清晰表达</span>
+              <span class="tag">自驱学习</span>
+              <span class="tag">复盘改进</span>
+              <span class="tag">可维护性</span>
+            </div>
+          </div>
+          <div class="item col-4">
+            <div class="top">
+              <h3>我擅长</h3>
+              <div class="meta">方向</div>
+            </div>
+            <p>
+              把需求变成可执行的任务清单；把模糊问题拆成可验证的假设；把功能做到“可用、好用、耐用”。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section" aria-label="技能">
+        <div class="section-header">
+          <h2>技能</h2>
+          <p>按你真实掌握程度调整</p>
+        </div>
+        <div class="grid">
+          <div class="item col-4">
+            <div class="top">
+              <h3>前端</h3>
+              <div class="meta">核心</div>
+            </div>
+            <p>HTML / CSS / JavaScript，响应式布局，组件化思维，性能与可访问性。</p>
+            <div class="tags">
+              <span class="tag">React</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Vite</span>
+            </div>
+          </div>
+          <div class="item col-4">
+            <div class="top">
+              <h3>后端 / 工具</h3>
+              <div class="meta">配合</div>
+            </div>
+            <p>API 设计、数据处理与自动化脚本，能快速搭建可用服务与小工具。</p>
+            <div class="tags">
+              <span class="tag">Node.js</span>
+              <span class="tag">Python</span>
+              <span class="tag">SQL</span>
+            </div>
+          </div>
+          <div class="item col-4">
+            <div class="top">
+              <h3>工程实践</h3>
+              <div class="meta">习惯</div>
+            </div>
+            <p>版本管理、代码规范、可复现环境、基础测试意识与文档沉淀。</p>
+            <div class="tags">
+              <span class="tag">Git</span>
+              <span class="tag">Lint</span>
+              <span class="tag">CI</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section" aria-label="项目">
+        <div class="section-header">
+          <h2>项目</h2>
+          <p>建议写 2–4 个最能代表你的</p>
+        </div>
+        <div class="grid">
+          <article class="item col-6">
+            <div class="top">
+              <h3>项目 A：个人主页/作品集</h3>
+              <div class="meta">Web</div>
+            </div>
+            <p>
+              使用响应式布局与组件化思路，完成清晰的信息结构与视觉层次；支持一键复制联系方式与生成简历文件。
+            </p>
+            <div class="tags">
+              <span class="tag">HTML/CSS</span>
+              <span class="tag">可访问性</span>
+              <span class="tag">响应式</span>
+            </div>
+          </article>
+          <article class="item col-6">
+            <div class="top">
+              <h3>项目 B：小型工具/自动化脚本</h3>
+              <div class="meta">Automation</div>
+            </div>
+            <p>
+              将重复操作流程化，通过参数化与日志输出降低使用成本；对关键步骤做错误处理与结果校验。
+            </p>
+            <div class="tags">
+              <span class="tag">Node/Python</span>
+              <span class="tag">日志</span>
+              <span class="tag">可复用</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience" class="section" aria-label="经历">
+        <div class="section-header">
+          <h2>经历</h2>
+          <p>可写学习/实习/工作/比赛/社团</p>
+        </div>
+        <div class="grid">
+          <div class="item col-12">
+            <div class="top">
+              <h3>经历标题（学校 / 公司 / 团队）</h3>
+              <div class="meta">2024.09 - 2026.01</div>
+            </div>
+            <p>
+              - 负责/参与：XXX<br />
+              - 结果：提升了 XX%，减少了 XX% 的耗时/错误<br />
+              - 方法：拆解需求、制定计划、迭代交付、复盘沉淀
+            </p>
+            <div class="tags">
+              <span class="tag">协作</span>
+              <span class="tag">交付</span>
+              <span class="tag">复盘</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section" aria-label="联系方式">
+        <div class="section-header">
+          <h2>联系</h2>
+          <p>建议保留 2–3 个渠道即可</p>
+        </div>
+        <div class="grid">
+          <div class="item col-4">
+            <div class="top">
+              <h3>邮箱</h3>
+              <div class="meta" id="emailText">yourname@example.com</div>
+            </div>
+            <p>点击按钮可一键复制到剪贴板。</p>
+          </div>
+          <div class="item col-4">
+            <div class="top">
+              <h3>GitHub</h3>
+              <div class="meta">
+                <a href="https://github.com/yourname" target="_blank" rel="noreferrer"
+                  >github.com/yourname</a
+                >
+              </div>
+            </div>
+            <p>把项目与 README 做得清晰，会非常加分。</p>
+          </div>
+          <div class="item col-4">
+            <div class="top">
+              <h3>微信/其他</h3>
+              <div class="meta">your-wechat-id</div>
+            </div>
+            <p>如需二维码，可后续我帮你加一个弹窗展示。</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="footer">
+        <span id="footNote">© <span id="year"></span> 文富 · 单页个人介绍</span>
+      </div>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+      const profile = {
+        name: "文富",
+        email: "yourname@example.com",
+      };
+
+      const toastEl = document.getElementById("toast");
+      const emailText = document.getElementById("emailText");
+      const yearEl = document.getElementById("year");
+
+      document.title = `个人介绍 | ${profile.name}`;
+      yearEl.textContent = String(new Date().getFullYear());
+      emailText.textContent = profile.email;
+
+      function toast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        window.clearTimeout(toastEl._t);
+        toastEl._t = window.setTimeout(() => toastEl.classList.remove("show"), 1600);
+      }
+
+      async function copyText(text) {
+        try {
+          await navigator.clipboard.writeText(text);
+          toast("已复制到剪贴板");
+        } catch {
+          // 兼容少数环境
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "true");
+          ta.style.position = "fixed";
+          ta.style.left = "-9999px";
+          document.body.appendChild(ta);
+          ta.select();
+          const ok = document.execCommand("copy");
+          document.body.removeChild(ta);
+          toast(ok ? "已复制到剪贴板" : "复制失败，请手动复制");
+        }
+      }
+
+      document.getElementById("btnCopyEmail").addEventListener("click", () => {
+        copyText(profile.email);
+      });
+
+      document.getElementById("btnDownload").addEventListener("click", () => {
+        const resume = `# ${profile.name}（简历示例）\n\n- 邮箱：${profile.email}\n- 方向：前端 / 全栈\n\n## 亮点\n- 用一句话概括你最强的价值\n\n## 技能\n- HTML/CSS/JS\n- React/TS\n\n## 项目\n- 项目 A：……\n\n`;
+        const blob = new Blob([resume], { type: "text/markdown;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${profile.name}-简历示例.md`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        toast("已生成下载文件");
+      });
+    </script>
+  </body>
+</html>
